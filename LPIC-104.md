@@ -29,6 +29,32 @@ blkid is a command that can print information about block devices, such as their
 
 ## 104.2 Maintain the integrity of filesystems | Weight: 2
 
+**What is inode?**  
+An inode is a data structure in a Unix-style file system that describes a file-system object such as a file or a directory. Each inode stores the attributes and disk block locations of the object's data, such as:
+
+•  File size
+
+•  File permissions
+
+•  File owner and group
+
+•  File type
+
+•  File creation, modification and access time
+
+•  Number of hard links to the file
+
+•  Location of the file data on the disk
+
+An inode is identified by an integer number, often called an i-number or inode number. The inode number indexes a table of inodes on the file system, which is usually located near the beginning of the partition. From the inode number, the kernel's file system driver can access the inode contents, including the location of the file, thereby allowing access to the file.
+
+You can find out the inode number of a file using the command ls -i. For example:
+
+```bash
+$ ls -i /etc/passwd
+262145 /etc/passwd 
+``` 
+
 **Which command find out about the free and used space on file systems?**  
 df  
 The diskfree command is used to find out about the free and used space on file systems.
@@ -179,6 +205,47 @@ Differences:
 
 ## 104.7 Find system files and place files in the correct location | weight: 2
 
-**Question?**  
+**FHS**  
+| directory | usage |
+| --- | --- |
+| / | ??? |
+| /bin |??? |
+| /boot | ??? |
+| /dev | ??? |
+| /etc |??? |
+| /lib | ??? |
+| /media | ??? |
+| /mnt | ??? |
+| /opt | ??? |
+| /sbin | ??? |
+| /srv | ??? |
+| /tmp | ??? |
+| /usr | ??? |
+| /var | ??? |
+| /home | ??? |
+| /lib | ??? |
+| /root | ??? |
+
+Filesystem Hierarchy Standard (FHS) is a document describing the Linux/Unix file hierarchy. It is very useful to know these because it lets you easily find what you are looking for as a system admin.
+
+| directory | usage |
+| --- | --- |
+| / | Primary hierarchy root and root directory of the entire file system hierarchy |
+| /bin | Essential command binaries |
+| /boot | Static files of the boot loader |
+| /dev | Device files |
+| /etc | Host-specific system configuration |
+| /lib | Essential shared libraries and kernel modules |
+| /media | Mount point for removable media |
+| /mnt | Mount point for mounting a filesystem temporarily |
+| /opt | Add-on application software packages |
+| /sbin | Essential system binaries |
+| /srv | Data for services provided by this system |
+| /tmp | Temporary files |
+| /usr | Secondary hierarchy |
+| /var | Variable data |
+| /home | User home directories (optional) |
+| /lib | Alternate format essential shared libraries (optional) |
+| /root | Home directory for the root user (optional) |
 
 **Question?**  
