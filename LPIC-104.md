@@ -32,19 +32,13 @@ blkid is a command that can print information about block devices, such as their
 **What is inode?**  
 An inode is a data structure in a Unix-style file system that describes a file-system object such as a file or a directory. Each inode stores the attributes and disk block locations of the object's data, such as:
 
-•  File size
-
-•  File permissions
-
-•  File owner and group
-
-•  File type
-
-•  File creation, modification and access time
-
-•  Number of hard links to the file
-
-•  Location of the file data on the disk
+* File size
+* File permissions
+* File owner and group
+* File type
+* File creation, modification and access time
+* Number of hard links to the file
+* Location of the file data on the disk
 
 An inode is identified by an integer number, often called an i-number or inode number. The inode number indexes a table of inodes on the file system, which is usually located near the beginning of the partition. From the inode number, the kernel's file system driver can access the inode contents, including the location of the file, thereby allowing access to the file.
 
@@ -136,7 +130,7 @@ chmod 751 myfile
 chmod u-x myfile
 ```
 
-**Give read permission of all files inside /tmp/ to any user**
+**Give read permission of all files inside /tmp/ to any user.**
 
 ```bash
 chmod -R o+r /tmp
@@ -180,8 +174,6 @@ guid on a directory will force any new file in that directory to have the guid o
 
 ## 104.6 Create and change hard and symbolic links | weight: 2
 
-
-
 **To remove links, you can use the?**  
  rm or unlink command.
 
@@ -190,22 +182,20 @@ Hard links and soft links are terms used in Linux operating systems to point to 
 
 Similarities:
 
-•  Both hard links and soft links are created with the command ln.
-
-•  Both hard links and soft links can be used to access the content of the original file.
+* Both hard links and soft links are created with the command ln.
+* Both hard links and soft links can be used to access the content of the original file.
 
 Differences:
 
-•  Hard links refer to the data itself and share the same inode number as the original file. Soft links or symbolic links point to the path to the data and have a different inode number
-•  Hard links act like a mirror copy of the original file and can't be used to link directories or cross file systems. Soft links are an actual link to the original file and if the original file is deleted, the soft link has no value
-
-•  Hard links are created with the command ln (original file path) (new file path). Soft links are created with the command ln -s (original file path) (new file path)
-
-•  Hard links are faster than soft links as they access the data directly. Soft links are slower as they have to follow the path to the data
+* Hard links refer to the data itself and share the same inode number as the original file. Soft links or symbolic links point to the path to the data and have a different inode number
+* Hard links act like a mirror copy of the original file and can't be used to link directories or cross file systems. Soft links are an actual link to the original file and if the original file is deleted, the soft link has no value
+* Hard links are created with the command ln (original file path) (new file path). Soft links are created with the command ln -s (original file path) (new file path)
+* Hard links are faster than soft links as they access the data directly. Soft links are slower as they have to follow the path to the data
 
 ## 104.7 Find system files and place files in the correct location | weight: 2
 
-**FHS**  
+**FHS?**
+
 | directory | usage |
 | --- | --- |
 | / | ??? |
@@ -248,4 +238,96 @@ Filesystem Hierarchy Standard (FHS) is a document describing the Linux/Unix file
 | /lib | Alternate format essential shared libraries (optional) |
 | /root | Home directory for the root user (optional) |
 
+**updatedb?**  
+The updatedb command will update the database used by the locate command.
+
+**type?**  
+The type built-in command returns the location that the shell will use in order to run the given command.  
+Three categories it returns are
+
+* alias
+* shell built-in
+* external command
+
+```bash
+$ type ls
+ls is aliased to 'ls --color=auto'
+$
+$ type cd
+cd is a shell builtin
+$
+$ type find
+find is /usr/bin/find
+```
+
+**fstab?**  
+For permanent storage devices, Linux maintains the /etc/fstab file to indicate which drive devices should be mounted to the virtual directory at boot time.  
+The proper order is the device (UUID or partition), followed by the directory to mount that device, followed by its type and options, and then the dump and fsck settings.
+
+```bash
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/dev/disk/by-uuid/dbf2754f-1bb1-415e-aaf8-365d012b9042 /boot ext4 defaults 0 1
+```
+
+**What is the most important features of the parted?**  
+One of the selling features of the parted program is that it allows you to modify existing partition sizes, so you can easily shrink or grow partitions on the drive.
+
+**gdisk?**  
+The gdisk command is a text-mode program for creating and manipulating GUID partition tables (GPTs).  
+| Command | Description |
+|---------|-------------|
+| b | Back up GPT data to a file |
+| c | Change a partition’s name |
+| d | Delete a partition |
+| i | Show detailed information on a partition |
+| l | List known partition types |
+| n | Add a new partition |
+| o | Create a new empty GUID partition table (GPT) |
+| p | Print the partition table |
+| q | Quit without saving changes |
+| r | Recovery and transformation options (experts only) |
+| s | Sort partitions |
+| t | Change a partition’s type code |
+| v | Verify disk |
+| w | Write table to disk and exit |
+| x | Extra functionality (experts only) |
+| ? | Print this menu |
+
+**dumpe2fs?**  
+Display block and superblock group information
+
+* The -b option prints known bad blocks. 
+* The -f option is used to force the display of information
+
+**fsck?**  
+If corruption occurs on the filesystem, you’ll need the fsck program.
+
+* -a : Automatically repair the file system without any questions (not recommended).
+* -r : Interactively repair the file system (ask for confirmation before making any changes).
+* -n : Do not make any changes to the file system (dry run).
+* -p : Automatically repair the file system if possible (do not prompt unless there are serious errors).
+* -y : Assume yes to all questions (not recommended).
+* -f : Force checking even if the file system seems clean.
+* -v : Verbose mode (display more details)
+
+**debugfs?**  
+Manually view and modify the filesystem structure, such as undeleting a file or extracting a corrupted file
+
+**mke2fs?**  
+The mke2fs command is a Linux utility that creates an ext2, ext3, or ext4 filesystem, usually in a disk partition. It creates the file system structure, such as the superblock and inode tables, which are required for the proper functioning of the file system.
+
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
+**Question?**  
 **Question?**  
